@@ -1,5 +1,6 @@
-from PIL import Image
+from PIL import Image, ImageEnhance
 import collections
+import numpy as np
 
 # Resize image to max size
 def resize(img, maxsize):
@@ -35,3 +36,29 @@ def save_images(images, path):
                 index = path.find('.')
                 name = path[:index] + str(i + 1) + path[index:]
                 img.save(name)
+
+# Join images on background image
+def join_imgs(bgimg, imgs, positions):
+    for i, im in enumerate(imgs):
+        bgimg = trans_paste(im, bgimg, box=positions[i])
+    return bgimg
+
+# Move to white colors
+def to_white(img, d=0.5):
+    data = np.asarray(img)
+    w_data = data + data * d
+    w_data[w_data > 255] = 255
+    return Image.fromarray(np.uint8(w_data))
+
+# Move image to transparence
+def to_transparence(img, alpha=0.5):
+    img = img.convert('RGBA')
+    img.putalpha(int(255 * (1 - alpha)))
+    mask = Image.new('RGB', img.size, (255, 255, 255))
+    mask.paste(img, mask=img.split()[3])
+    return mask
+
+# Image brightness correction
+def bright_img(img, br=2):
+    enh = ImageEnhance.Brightness(img)
+    return enh.enhance(br)
