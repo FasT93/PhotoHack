@@ -35,8 +35,6 @@ class TextDrawer():
         self.cornersize_max = 25
 
     def draw(self, text):
-        if not isinstance(text, collections.Iterable):
-            text = [text]
         images = []
         for t in text:
             font, fontsize, backcolor, textcolor, space, cornersize = self.__get_params()

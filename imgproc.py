@@ -1,4 +1,5 @@
 from PIL import Image
+import collections
 
 # Resize image to max size
 def resize(img, maxsize):
@@ -24,7 +25,13 @@ def luminance(color):
 
 # Save images
 def save_images(images, path):
-    for i, img in enumerate(images):
-        index = path.find('.')
-        name = path[:index] + str(i + 1) + path[index:]
-        img.save(name)
+    if not isinstance(images, collections.Iterable):
+        images.save(path)
+    else:
+        if len(images) == 1:
+            images[0].save(path)
+        else:
+            for i, img in enumerate(images):
+                index = path.find('.')
+                name = path[:index] + str(i + 1) + path[index:]
+                img.save(name)
