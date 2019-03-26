@@ -1,5 +1,4 @@
 import numpy as np
-import scipy.optimize as opt
 from genetic import GeneticAlgorithm
 
 def intersection(rect1, rect2):
@@ -87,6 +86,7 @@ class ImageGenerator():
         rects = [(x[i], y[i], self.sizes[i][0], self.sizes[i][1]) for i in range(self.count())]
         f += np.sqrt(2 * intersections(rects))
         f += np.sqrt(4 * order(rects))
-        f += np.sqrt(intersections_with_box(rects, self.face_rect))
+        if self.face_rect is not None:
+            f += np.sqrt(intersections_with_box(rects, self.face_rect))
         return f
 
