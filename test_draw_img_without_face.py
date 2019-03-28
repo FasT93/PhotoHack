@@ -5,7 +5,8 @@ from imgproc import join_imgs, to_transparence, resize
 from PIL import Image
 import numpy as np
 
-text = 'Это тестовый текст для того чтобы протестировать!'
+# text = 'Это тестовый текст для того чтобы протестировать!'
+text = 'Это!'
 
 img = Image.open('images/selfie.jpg')
 img = to_transparence(img, 0.2)
@@ -20,10 +21,11 @@ td.mode = 'cornered'
 td.textcolor_mode = 'contrast'
 td.backcolor_mode = 'random'
 td.fontsize_mode = 'random'
-td.fontsize_min = 40
-td.fontsize_max = 50
+td.fontsize_min = 60
+td.fontsize_max = 60
 td.font_mode = 'random'
 td.font_folder = 'fonts'
+td.cornersize = 15
 imtexts = td.draw(words)
 
 sizes = [im.size for im in imtexts]

@@ -55,7 +55,10 @@ class GeneticAlgorithm(object):
             ids = rnd.sample(range(arr.shape[0]), 2)
             parent1 = arr[ids[0], :]
             parent2 = arr[ids[1], :]
-            s = rnd.sample(range(1, self.dim), 2)
+            if self.dim < 3:
+                s = (1, 1)
+            else:
+                s = rnd.sample(range(1, self.dim), 2)
             children[i, :] = np.hstack((parent1[:min(s)], parent2[min(s):max(s)], parent1[max(s):]))
             children[i + 1, :] = np.hstack((parent2[:min(s)], parent1[min(s):max(s)], parent2[max(s):]))
         return self.check_minmax(children)
