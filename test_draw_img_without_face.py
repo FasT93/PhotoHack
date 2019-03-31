@@ -6,9 +6,10 @@ from PIL import Image
 import numpy as np
 
 # text = 'Это тестовый текст для того чтобы протестировать!'
-text = 'Это!'
+# text = 'Это!'
+text = 'Цветочки для танцев'
 
-img = Image.open('images/selfie.jpg')
+img = Image.open('images/flowers.jpg')
 img = to_transparence(img, 0.2)
 img = resize(img, 500)
 

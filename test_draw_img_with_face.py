@@ -6,9 +6,10 @@ from imgproc import join_imgs, to_transparence, resize
 from PIL import Image
 import numpy as np
 
-text = 'Это тестовый текст для того чтобы протестировать!'
+# text = 'Это тестовый текст для того чтобы протестировать!'
+text = 'Цветочки для танцев'
 
-img = Image.open('images/selfie.jpg')
+img = Image.open('images/flowers.jpg')
 img = to_transparence(img, 0.2)
 img = resize(img, 500)
 

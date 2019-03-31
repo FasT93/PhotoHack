@@ -73,7 +73,7 @@ class ImageGenerator():
         ga.n_iters = 1000
         ga.mutation_prob = 0.4
         ga.dim = 2 * self.count()
-        ga.mutation_factor = min(self.width(), self.height()) / 2
+        ga.mutation_factor = int(round(min(self.width(), self.height()) / 2))
         ga.set_minvals(self.space)
         ga.set_maxvals(maxvals)
         _, minx = ga.minimize(self.fitness)
